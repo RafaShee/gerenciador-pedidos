@@ -73,10 +73,10 @@ public class Principal {
         repositorioProduto.save(produto2);*/
 
         //Pegando produto do banco
-        Produto produto1 = new Produto();
+        /*Produto produto1 = new Produto();
         produto1 = (Produto) buscarItem(produto1, "celular");
         Produto produto2 = new Produto();
-        produto2 = (Produto) buscarItem(produto2, "caneta");
+        produto2 = (Produto) buscarItem(produto2, "caneta");*/
 
         //Pegando categorias cadastradas no banco
         /*Categoria categoria = new Categoria();
@@ -132,17 +132,73 @@ public class Principal {
         repositorioFornecedor.save(fornecedor3);*/
 
         //Pegando fornecedores do banco
-        Fornecedor fornecedor1 = new Fornecedor();
+        /*Fornecedor fornecedor1 = new Fornecedor();
         fornecedor1 = (Fornecedor) buscarItem(fornecedor1, "multsystem");
         Fornecedor fornecedor2 = new Fornecedor();
-        fornecedor2 = (Fornecedor) buscarItem(fornecedor2, "acemape");
+        fornecedor2 = (Fornecedor) buscarItem(fornecedor2, "acemape");*/
 
         //Associando fornecedores a produtos
-        produto1.setFornecedor(fornecedor1);
+        /*produto1.setFornecedor(fornecedor1);
         produto2.setFornecedor(fornecedor2);
         repositorioProduto.save(produto1);
-        repositorioProduto.save(produto2);
+        repositorioProduto.save(produto2);*/
 
+        //Consultas derived query
+        //1
+        /*Optional<Produto> buscarProdutoPorNomeExato = repositorioProduto.findByNomeEquals("Celular");
+        if (buscarProdutoPorNomeExato.isPresent()) {
+            System.out.println("Nome do produto: " + buscarProdutoPorNomeExato.get().getNome() + " preço: " + buscarProdutoPorNomeExato.get().getPreco());
+        }else{
+            System.out.println("nenhum produto encontrado");
+        }*/
+        //2
+        /*List<Produto> buscarProdutosPorCategoria = repositorioProduto.findByCategoriaNome("papelaria");
+        buscarProdutosPorCategoria.forEach(p -> System.out.println("Nome: " + p.getNome() + " Preco: " + p.getPreco() + " categoria: " + p.getCategoria().getNome()));*/
+        //3
+        /*List<Produto> buscarProdutosPorPrecoMaior = repositorioProduto.findByPrecoGreaterThan(5.0);
+        buscarProdutosPorPrecoMaior.forEach(p -> System.out.println("Nome: " + p.getNome() + " Preço: " + p.getPreco()));*/
+        //4
+        /*List<Produto> buscarProdutosPorPrecoMenor = repositorioProduto.findByPrecoLessThan(5.0);
+        buscarProdutosPorPrecoMenor.forEach(p -> System.out.println("Nome: " + p.getNome() + " Preço: " + p.getPreco()));*/
+        //5
+        /*List<Produto> buscarProdutosPorTermoContido = repositorioProduto.findByNomeContainingIgnoreCase("ta");
+        buscarProdutosPorTermoContido.forEach(p -> System.out.println("Nome: " + p.getNome()));*/
+        //6
+        /*List<Pedido> buscarPedidosSemData = repositorioPedido.findByDataIsNull();
+        buscarPedidosSemData.forEach(p -> System.out.println("ID: " + p.getId()));*/
+        //7
+        /*List<Pedido> buscarPedidosComData = repositorioPedido.findByDataIsNotNull();
+        buscarPedidosComData.forEach(p -> System.out.println("ID: " + p.getId()));*/
+        //8
+        /*List<Produto> buscarProdutosPorCategoriaEOrdenadoCrescente = repositorioProduto.findByCategoriaNomeEqualsOrderByPrecoAsc("papelaria");
+        buscarProdutosPorCategoriaEOrdenadoCrescente.forEach(p -> System.out.println("Nome: " + p.getNome() + " Preco: " + p.getPreco() + " categoria: " + p.getCategoria().getNome()));*/
+        //9
+       /* List<Produto> buscarProdutosPorCategoriaEOrdenadoDecrescente = repositorioProduto.findByCategoriaNomeEqualsOrderByPrecoDesc("papelaria");
+        buscarProdutosPorCategoriaEOrdenadoDecrescente.forEach(p -> System.out.println("Nome: " + p.getNome() + " Preco: " + p.getPreco() + " categoria: " + p.getCategoria().getNome()));*/
+        //10
+        /*int quantidadePorCategoria = repositorioProduto.countByCategoriaNome("papelaria");
+        System.out.println(quantidadePorCategoria);*/
+        //11
+        /*int quantidadePorPreco = repositorioProduto.countByPrecoGreaterThan(5.0);
+        System.out.println(quantidadePorPreco);*/
+        //12
+        /*List<Produto> buscarProdutosPrecoMaiorENomeContendoTexto = repositorioProduto.findByNomeContainingIgnoreCaseOrPrecoLessThan("a", 5.0);
+        buscarProdutosPrecoMaiorENomeContendoTexto.forEach(p -> System.out.println("Nome: " + p.getNome() + " Preco: " + p.getPreco()));*/
+        //13
+        /*List<Pedido> buscarPedidosFeitosAposData = repositorioPedido.findByDataAfter(LocalDate.parse("2025-03-01"));
+        buscarPedidosFeitosAposData.forEach(p -> System.out.println("Pedido: " + p.getId() + " Data: " + p.getData()));*/
+        //14
+        /*List<Pedido> buscarPedidosFeitosAntesData = repositorioPedido.findByDataBefore(LocalDate.parse("2025-03-01"));
+        buscarPedidosFeitosAntesData.forEach(p -> System.out.println("Pedido: " + p.getId() + " Data: " + p.getData()));*/
+        //15
+        /*List<Pedido> buscarPedidosFeitosIntervalo = repositorioPedido.findByDataBetween(LocalDate.parse("2025-03-01"), LocalDate.parse("2025-03-02"));
+        buscarPedidosFeitosIntervalo.forEach(p -> System.out.println("Pedido: " + p.getId() + " Data: " + p.getData()));*/
+        //16
+        /*List<Produto> buscarTop3ProdutosMaisCaros = repositorioProduto.findTop3ByOrderByPrecoDesc();
+        buscarTop3ProdutosMaisCaros.forEach(produto -> System.out.println("Nome: " + produto.getNome() + " Preço:" + produto.getPreco()));*/
+        //17
+        List<Produto> buscarTop5ProdutosMaisBaratos = repositorioProduto.findTop5ByCategoriaNomeOrderByPrecoAsc("papelaria");
+        buscarTop5ProdutosMaisBaratos.forEach(produto -> System.out.println("Nome: " + produto.getNome() + " Preço:" + produto.getPreco()));
 
 
 
